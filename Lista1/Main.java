@@ -15,7 +15,7 @@ public class Main{
         System.out.println("Queue insertion");
         for (int i = 1; i <= 50; i++){
             queue.add(i);
-            System.out.println(queue.peek());
+            System.out.println(i);
         }
         System.out.println("Queue removal");
         for (int i = 1; i <= 50; i++){
