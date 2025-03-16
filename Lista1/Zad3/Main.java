@@ -36,8 +36,8 @@ public class Main{
         for(int i = 0; i < 1000; i++){
             total2 += l.search(rand.nextInt(100001));
         }
-        System.out.println("First case: " + total1);
-        System.out.println("Second case: " + total2);
+        System.out.println("First case: " + total1 / 1000);
+        System.out.println("Second case: " + total2 / 1000);
 
     }
 

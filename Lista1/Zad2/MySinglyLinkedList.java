@@ -77,9 +77,10 @@ public class MySinglyLinkedList implements SinglyLinkedList {
         }
         Node current = head;
         for (int i = 1; i <= size; i++){
-            System.out.println(current.data);
+            System.out.printf(current.data + " ");
             current = current.next;
         }
+        System.out.println();
     }
 
     @Override
