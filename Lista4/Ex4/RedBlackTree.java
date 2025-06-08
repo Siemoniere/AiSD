@@ -19,10 +19,9 @@ class Node<T extends Comparable<T>> {
 }
 public class RedBlackTree<T extends Comparable<T>> {
     private Node<T> root;
-    private final Node<T> TNULL; // Sentinel node for null references
-    public static int point = 0; // Points for the tree
-    public static int cmp = 0; // Comparison count
-    // Constructor to initialize the Red-Black Tree
+    private final Node<T> TNULL;
+    public static int point = 0;
+    public static int cmp = 0;
     public RedBlackTree() {
         TNULL = new Node<>(null);
         TNULL.color = Color.BLACK;
@@ -37,12 +36,10 @@ public class RedBlackTree<T extends Comparable<T>> {
         }
     }
 
-    // Function to start preorder traversal
     public void preorder() {
         preOrderHelper(this.root);
     }
 
-    // Inorder traversal helper function
     private void inOrderHelper(Node<T> node) {
         if (node != TNULL) {
             inOrderHelper(node.left);
@@ -51,12 +48,10 @@ public class RedBlackTree<T extends Comparable<T>> {
         }
     }
 
-    // Function to start inorder traversal
     public void inorder() {
         inOrderHelper(this.root);
     }
 
-    // Postorder traversal helper function
     private void postOrderHelper(Node<T> node) {
         if (node != TNULL) {
             postOrderHelper(node.left);
@@ -65,18 +60,16 @@ public class RedBlackTree<T extends Comparable<T>> {
         }
     }
 
-    // Function to start postorder traversal
     public void postorder() {
         postOrderHelper(this.root);
     }
 
-    // Function to perform left rotation
     private void leftRotate(Node<T> x) {
-        point++; // Increment point for left rotation
+        point++; 
         Node<T> y = x.right;
         point++;
         x.right = y.left;
-        point++; // Increment point for accessing y.left
+        point++;
         if (y.left != TNULL) {
             point++;
             y.left.parent = x;
@@ -102,7 +95,6 @@ public class RedBlackTree<T extends Comparable<T>> {
         point++;
     }
 
-    // Function to perform right rotation
     private void rightRotate(Node<T> x) {
         point++;
         Node<T> y = x.left;
@@ -134,18 +126,16 @@ public class RedBlackTree<T extends Comparable<T>> {
         x.parent = y;
     }
 
-    // Function to insert a new node
     public void insert(T key) {
         Node<T> node = new Node<>(key);
         node.parent = null;
         node.left = TNULL;
         node.right = TNULL;
-        node.color = Color.RED; // New node must be red
+        node.color = Color.RED; 
 
         Node<T> y = null;
         Node<T> x = this.root;
 
-        // Find the correct position to insert the new node
         while (x != TNULL) {
             point++;
             cmp++;
@@ -173,7 +163,6 @@ public class RedBlackTree<T extends Comparable<T>> {
             y.right = node;
         }
 
-        // Fix the tree if the properties are violated
         point++;
         if (node.parent == null) {
             node.color = Color.BLACK;
@@ -187,7 +176,6 @@ public class RedBlackTree<T extends Comparable<T>> {
         fixInsert(node);
     }
 
-    // Function to fix violations after insertion
     private void fixInsert(Node<T> k) {
         Node<T> u;
         while (k.parent.color == Color.RED) {  
@@ -246,26 +234,25 @@ public class RedBlackTree<T extends Comparable<T>> {
     }
 
     private void deleteNodeHelper(Node<T> node, T key) {
-        // Znajdź węzeł do usunięcia
         Node<T> z = TNULL;
         Node<T> x, y;
         while (true) {
-            point++; // odczyt node (sprawdzenie != TNULL)
+            point++; 
             if (node == TNULL) break;
 
-            cmp++; // porównanie kluczy w equals
+            cmp++; 
             if (node.data.equals(key)) {
-                point++; // przypisanie z = node
+                point++;
                 z = node;
                 break;
             }
 
-            cmp++; // porównanie kluczy w compareTo
+            cmp++; 
             if (key.compareTo(node.data) < 0) {
-                point++; // odczyt pola left
+                point++;
                 node = node.left;
             } else {
-                point++; // odczyt pola right
+                point++;
                 node = node.right;
             }
         }

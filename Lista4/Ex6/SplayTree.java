@@ -3,10 +3,10 @@ import java.io.OutputStreamWriter;
 import java.io.IOException;
 
 class Node {
-	int data; // holds the key
-	Node parent; // pointer to the parent
-	Node left; // pointer to left child
-	Node right; // pointer to right child
+	int data;
+	Node parent;
+	Node left; 
+	Node right;
 
 	public Node(int data) {
 		this.data = data;
@@ -45,7 +45,6 @@ public class SplayTree {
 			System.out.println("Couldn't find key in the tree");
 			return;
 		}
-		// split operation
 		splay(x);
 		point++;
 		if (x.right != null) {
@@ -61,9 +60,8 @@ public class SplayTree {
 		s.right = null;
 		x = null;
 
-		// join operation
 		point++;
-		if (s.left != null){ // remove x
+		if (s.left != null){ 
 			point++;
 			s.left.parent = null;
 		}
@@ -71,7 +69,6 @@ public class SplayTree {
 		s = null;
 	}
 
-	// rotate left at node x
 	private void leftRotate(Node x) {
 		point++;
 		Node y = x.right;
@@ -101,7 +98,6 @@ public class SplayTree {
 		x.parent = y;
 	}
 
-	// rotate right at node x
 	private void rightRotate(Node x) {
 		Node y = x.left;
 		point++;
@@ -131,37 +127,30 @@ public class SplayTree {
 		x.parent = y;
 	}
 
-	// Splaying operation. It moves x to the root of the tree
 	private void splay(Node x) {
 		while (x.parent != null) {
 			point++;
 			if (x.parent.parent == null) {
 				point++;
 				if (x == x.parent.left) {
-					// zig rotation
 					rightRotate(x.parent);
 				} else {
-					// zag rotation
 					leftRotate(x.parent);
 				}
 			} else if (x == x.parent.left && x.parent == x.parent.parent.left) {
 				point++;
-				// zig-zig rotation
 				rightRotate(x.parent.parent);
 				rightRotate(x.parent);
 			} else if (x == x.parent.right && x.parent == x.parent.parent.right) {
 				point++;
-				// zag-zag rotation
 				leftRotate(x.parent.parent);
 				leftRotate(x.parent);
 			} else if (x == x.parent.right && x.parent == x.parent.parent.left) {
 				point++;
-				// zig-zag rotation
 				leftRotate(x.parent);
 				rightRotate(x.parent);
 			} else {
 				point++;
-				// zag-zig rotation
 				rightRotate(x.parent);
 				leftRotate(x.parent);
 			}
@@ -169,7 +158,6 @@ public class SplayTree {
 		}
 	}
 
-	// joins two trees s and t
 	private Node join(Node s, Node t){
 		if (s == null) {
 			return t;
@@ -212,25 +200,18 @@ public class SplayTree {
 		} 
 	}
 
-	// Pre-Order traversal
-	// Node->Left Subtree->Right Subtree
 	public void preorder() {
 		preOrderHelper(this.root);
 	}
 
-	// In-Order traversal
-	// Left Subtree -> Node -> Right Subtree
 	public void inorder() {
 		inOrderHelper(this.root);
 	}
 
-	// Post-Order traversal
-	// Left Subtree -> Right Subtree -> Node
 	public void postorder() {
 		postOrderHelper(this.root);
 	}
 
-	// find the node with the minimum key
 	public Node minimum(Node node) {
 		point++;
 		while (node.left != null) {
@@ -240,7 +221,6 @@ public class SplayTree {
 		return node;
 	}
 
-	// find the node with the maximum key
 	public Node maximum(Node node) {
 		point++;
 		while (node.right != null) {
@@ -250,18 +230,11 @@ public class SplayTree {
 		return node;
 	}
 
-	// find the successor of a given node
 	public Node successor(Node x) {
-		// if the right subtree is not null,
-		// the successor is the leftmost node in the
-		// right subtree
 		point++;
 		if (x.right != null) {
 			return minimum(x.right);
 		}
-
-		// else it is the lowest ancestor of x whose
-		// left child is also an ancestor of x.
 		Node y = x.parent;
 		point++;
 		while (y != null && x == y.right) {
@@ -271,11 +244,7 @@ public class SplayTree {
 		return y;
 	}
 
-	// find the predecessor of a given node
 	public Node predecessor(Node x) {
-		// if the left subtree is not null,
-		// the predecessor is the rightmost node in the 
-		// left subtree
 		point++;
 		if (x.left != null) {
 			return maximum(x.left);
@@ -291,7 +260,6 @@ public class SplayTree {
 		return y;
 	}
 
-	// insert the key to the tree in its appropriate position
 	public void insert(int key) {
 		Node node = new Node(key);
 		Node y = null;
@@ -309,7 +277,6 @@ public class SplayTree {
 			}
 		}
 
-		// y is parent of x
 		node.parent = y;
 		if (y == null) {
 			root = node;
@@ -323,11 +290,9 @@ public class SplayTree {
 			y.right = node;
 		}
 
-		// splay node
 		splay(node);
 	}
 
-	// delete the node from the tree
 	void deleteNode(int data) {
 		deleteNodeHelper(this.root, data);
 	}

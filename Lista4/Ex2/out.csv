@@ -1,4 +1,4 @@
-Test,sign,n,avg_cmp,max_cmp,avg_point,max_point,avg_height,max_height
+sign;n;avg_cmp;max_cmp;avg_point;max_point;avg_height;max_height
 l;10000;14;29;30;59;25;30
 l;20000;16;33;33;67;27;34
 l;30000;17;39;36;79;31;40
@@ -9,5 +9,6 @@ l;70000;19;38;39;77;34;39
 l;80000;19;41;40;83;34;42
 l;90000;19;44;39;89;35;45
 l;100000;19;40;40;81;34;41
+sign;n;avg_cmp;max_cmp;avg_point;max_point;avg_height;max_height
 r;10000;4999;9999;9999;19999;5000;10000
 r;20000;9999;19999;19999;39999;10000;20000

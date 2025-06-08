@@ -48,10 +48,9 @@ public class Node<T extends Comparable<T>> {
             }
         } else {
             cmp++;
-            // Node to be deleted found
             point = point + 2;
             if (left == null && right == null) {
-                return null; // remove this node
+                return null;
             } else if (left == null) {
                 point++;
                 return right;
@@ -114,7 +113,6 @@ public class Node<T extends Comparable<T>> {
         }
         out.write('\n');
     }
-    // use string and not stringbuffer on purpose as we need to change the indent at each recursion
     private void printTree(OutputStreamWriter out, boolean isRight, String indent) throws IOException {
         if (right != null) {
             right.printTree(out, true, indent + (isRight ? "        " : " |      "));

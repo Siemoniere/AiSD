@@ -15,7 +15,7 @@ do
     total_avg_height=0
     total_max_height=0
 
-    for (( i=1; i<=3; i++ ))
+    for (( i=1; i<=20; i++ ))
     do
       output=$(java -Xss16m DataGenerator "$sign" "$n" | java -Xss16m PrinterTest)
 
@@ -73,9 +73,9 @@ do
     done
 
     # Obliczamy średnią z 20 powtórzeń
-    total_avg_cmp=$((total_avg_cmp / 3))
-    total_avg_point=$((total_avg_point / 3))
-    total_avg_height=$((total_avg_height / 3))
+    total_avg_cmp=$((total_avg_cmp / 20))
+    total_avg_point=$((total_avg_point / 20))
+    total_avg_height=$((total_avg_height / 20))
 
     echo "$sign;$n;$total_avg_cmp;$total_max_cmp;$total_avg_point;$total_max_point;$total_avg_height;$total_max_height"
   done

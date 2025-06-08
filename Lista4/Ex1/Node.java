@@ -35,15 +35,13 @@ public class Node<T extends Comparable<T>> {
                 right = right.deleteFromTree(v);
             }
         } else {
-            // Node to be deleted found
             if (left == null && right == null) {
-                return null; // remove this node
+                return null;
             } else if (left == null) {
                 return right;
             } else if (right == null) {
                 return left;
             } else {
-                // Replace value with smallest value in right subtree
                 Node<T> minNode = right;
                 while (minNode.left != null) {
                     minNode = minNode.left;
@@ -81,7 +79,6 @@ public class Node<T extends Comparable<T>> {
         }
         out.write('\n');
     }
-    // use string and not stringbuffer on purpose as we need to change the indent at each recursion
     private void printTree(OutputStreamWriter out, boolean isRight, String indent) throws IOException {
         if (right != null) {
             right.printTree(out, true, indent + (isRight ? "        " : " |      "));

@@ -1,4 +1,4 @@
-Test,sign,n,avg_cmp,max_cmp,avg_point,max_point,avg_height,max_height
+sign;n;avg_cmp;max_cmp;avg_point;max_point;avg_height;max_height
 r;10000;21;29;50;95;16;24
 r;20000;23;35;53;102;17;26
 r;30000;24;33;55;107;18;27
